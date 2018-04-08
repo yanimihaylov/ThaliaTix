@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>testCases.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">testCases (Nov 23, 2017 9:16:09 PM)</a> &gt; <a href="../../index.html" class="el_group">ThaliaTix</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Thalia</a> &gt; <span class="el_source">testCases.java</span></div><h1>testCases.java</h1><pre class="source lang-java linenums">package Thalia;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="fc" id="L11">public class testCases {</span>
+<span class="fc" id="L12">	private InterfaceShows is = new ShowManager();</span>
+<span class="fc" id="L13">	private InterfaceSeating iseat = new SeatingManager();</span>
+<span class="fc" id="L14">	private interfaceOrders iord = new orderManager();</span>
+<span class="fc" id="L15">	private InterfaceTicket itic = new ticketManager();</span>
+<span class="fc" id="L16">	private interfaceSub isub = new subManager();</span>
+<span class="fc" id="L17">	private requestShows rs = new requestShows();</span>
+	private Section sec;
+<span class="fc" id="L19">	private initTheater it = new initTheater();</span>
+<span class="fc" id="L20">	private </span>
+	int createdShowObjects=0;
+<span class="fc" id="L22">	int price=0;</span>
+
+
+    @Before
+    public void setUp() throws Exception {	
+		
+<span class="fc" id="L28">		Section sec1 = iseat.createSections(&quot;Front Right&quot;, 123, 250);</span>
+<span class="fc" id="L29">		price = sec1.getPrice();</span>
+<span class="fc" id="L30">		sec1 = it.initFrontRight();</span>
+<span class="fc" id="L31">		sec1.setPrice(price);</span>
+		
+<span class="fc" id="L33">		Section sec2 = iseat.createSections(&quot;Front Center&quot;, 124, 350);</span>
+<span class="fc" id="L34">		price = sec2.getPrice();</span>
+<span class="fc" id="L35">		sec2 = it.initFrontCenter();</span>
+<span class="fc" id="L36">		sec2.setPrice(price);</span>
+		
+<span class="fc" id="L38">		Section sec3 = iseat.createSections(&quot;Front Left&quot;, 125, 350);</span>
+<span class="fc" id="L39">		price = sec3.getPrice();</span>
+<span class="fc" id="L40">		sec3 = it.initFrontLeft();</span>
+<span class="fc" id="L41">		sec3.setPrice(price);</span>
+		
+<span class="fc" id="L43">		Section sec4 = iseat.createSections(&quot;Main Right&quot;, 126, 350);</span>
+<span class="fc" id="L44">		Section sec5 = iseat.createSections(&quot;Main Center&quot;, 127, 350);</span>
+<span class="fc" id="L45">		Section sec6 = iseat.createSections(&quot;Main Left&quot;, 128, 350);</span>
+		
+<span class="fc" id="L47">		shows sh1 = is.createShow(&quot;name&quot;, &quot;web&quot;, &quot;date&quot;, &quot;time&quot;);</span>
+<span class="fc" id="L48">		sh1.add(0, sec1);</span>
+<span class="fc" id="L49">		createdShowObjects++;</span>
+<span class="fc" id="L50">		shows sh2 = is.createShow(&quot;name&quot;, &quot;web&quot;, &quot;date&quot;, &quot;time&quot;);</span>
+<span class="fc" id="L51">		sh2.add(0, sec1);</span>
+<span class="fc" id="L52">		sh2.add(1, sec2);</span>
+<span class="fc" id="L53">		createdShowObjects++;</span>
+<span class="fc" id="L54">		shows sh3 = is.createShow(&quot;name&quot;, &quot;web&quot;, &quot;date&quot;, &quot;time&quot;);</span>
+<span class="fc" id="L55">		sh3.add(0, sec1);</span>
+<span class="fc" id="L56">		sh3.add(1, sec2);</span>
+<span class="fc" id="L57">		sh3.add(2, sec3);</span>
+<span class="fc" id="L58">		createdShowObjects++;	</span>
+		
+<span class="fc" id="L60">		orders ord = iord.createOrder(1, 123, &quot;name&quot;, &quot;phone&quot;, &quot;email&quot;, &quot;b_a&quot;, &quot;cc_n&quot;, &quot;cc_exp_d&quot;);</span>
+<span class="fc" id="L61">		orders ord1 = iord.createOrder(1, 124, &quot;name&quot;, &quot;phone&quot;, &quot;email&quot;, &quot;b_a&quot;, &quot;cc_n&quot;, &quot;cc_exp_d&quot;);</span>
+		
+<span class="fc" id="L63">		ticket tic = itic.createTicket(65, 1, 123, &quot;Front Right&quot;);</span>
+<span class="fc" id="L64">		ticket tic1 = itic.createTicket(90, 2, 125, &quot;Front Left&quot;);</span>
+
+<span class="fc" id="L66">    }</span>
+    
+    
+    @Test
+    public void test_initTheater() {
+
+<span class="fc" id="L72">		Section sec1 = iseat.createSections(&quot;Front Right&quot;, 123, 250);</span>
+<span class="fc" id="L73">		Section sec2 = iseat.createSections(&quot;Front Center&quot;, 124, 350);</span>
+<span class="fc" id="L74">		Section sec3 = iseat.createSections(&quot;Front Left&quot;, 125, 350);</span>
+<span class="fc" id="L75">		Section sec4 = iseat.createSections(&quot;Main Right&quot;, 126, 350);</span>
+<span class="fc" id="L76">		Section sec5 = iseat.createSections(&quot;Main Center&quot;, 127, 350);</span>
+<span class="fc" id="L77">		Section sec6 = iseat.createSections(&quot;Main Left&quot;, 128, 350);</span>
+<span class="fc" id="L78">		it.create();</span>
+		
+<span class="fc" id="L80">    		sec1 = it.initFrontRight();</span>
+<span class="fc" id="L81">    		assertTrue(sec1.getSeating().get(0).getSeats().get(0).getCid().equals(&quot;201&quot;));</span>
+<span class="fc" id="L82">    		assertTrue(sec1.getSeating().get(1).getSeats().get(0).getCid().equals(&quot;213&quot;));</span>
+<span class="fc" id="L83">    		assertTrue(sec1.getSeating().get(2).getSeats().get(0).getCid().equals(&quot;225&quot;));</span>
+<span class="fc" id="L84">    		assertTrue(sec1.getSeating().get(3).getSeats().get(0).getCid().equals(&quot;238&quot;));</span>
+
+<span class="fc" id="L86">    		sec2 = it.initFrontCenter();</span>
+<span class="fc" id="L87">    		assertTrue(sec2.getSeating().get(0).getSeats().get(0).getCid().equals(&quot;205&quot;));</span>
+<span class="fc" id="L88">    		assertTrue(sec2.getSeating().get(1).getSeats().get(0).getCid().equals(&quot;217&quot;));</span>
+<span class="fc" id="L89">    		assertTrue(sec2.getSeating().get(2).getSeats().get(0).getCid().equals(&quot;229&quot;));</span>
+<span class="fc" id="L90">    		assertTrue(sec2.getSeating().get(3).getSeats().get(0).getCid().equals(&quot;242&quot;));</span>
+    		
+<span class="fc" id="L92">    		sec3 = it.initFrontLeft();</span>
+<span class="fc" id="L93">    		assertTrue(sec3.getSeating().get(0).getSeats().get(0).getCid().equals(&quot;209&quot;));</span>
+<span class="fc" id="L94">    		assertTrue(sec3.getSeating().get(1).getSeats().get(0).getCid().equals(&quot;221&quot;));</span>
+<span class="fc" id="L95">    		assertTrue(sec3.getSeating().get(2).getSeats().get(0).getCid().equals(&quot;234&quot;));</span>
+<span class="fc" id="L96">    		assertTrue(sec3.getSeating().get(3).getSeats().get(0).getCid().equals(&quot;248&quot;));</span>
+
+    		
+<span class="fc" id="L99">    		sec4 = it.initMainRight();</span>
+<span class="fc" id="L100">    		assertTrue(sec4.getSeating().get(0).getSeats().get(0).getCid().equals(&quot;252&quot;));</span>
+<span class="fc" id="L101">    		assertTrue(sec4.getSeating().get(1).getSeats().get(0).getCid().equals(&quot;268&quot;));</span>
+<span class="fc" id="L102">    		assertTrue(sec4.getSeating().get(2).getSeats().get(0).getCid().equals(&quot;285&quot;));</span>
+
+    		
+<span class="fc" id="L105">    		sec5 = it.initMainCenter();</span>
+<span class="fc" id="L106">    		assertTrue(sec5.getSeating().get(0).getSeats().get(0).getCid().equals(&quot;257&quot;));</span>
+<span class="fc" id="L107">    		assertTrue(sec5.getSeating().get(1).getSeats().get(0).getCid().equals(&quot;273&quot;));</span>
+<span class="fc" id="L108">    		assertTrue(sec5.getSeating().get(2).getSeats().get(0).getCid().equals(&quot;290&quot;));</span>
+    		
+<span class="fc" id="L110">    		sec6 = it.initMainLeft();</span>
+<span class="fc" id="L111">    		assertTrue(sec6.getSeating().get(0).getSeats().get(0).getCid().equals(&quot;263&quot;));</span>
+<span class="fc" id="L112">    		assertTrue(sec6.getSeating().get(1).getSeats().get(0).getCid().equals(&quot;280&quot;));</span>
+<span class="fc" id="L113">    		assertTrue(sec6.getSeating().get(2).getSeats().get(0).getCid().equals(&quot;298&quot;));</span>
+<span class="fc" id="L114">    }</span>
+    
+    @Test
+    public void test_nullShow(){
+<span class="fc" id="L118">    		shows s = is.getShowDetail(20000);</span>
+<span class="fc" id="L119">    		assertTrue(s.isNil());</span>
+<span class="fc" id="L120">    }</span>
+    @Test
+    public void test_nullOrder(){
+<span class="fc" id="L123">    		orders ord = iord.getOrderDetail(20000);</span>
+<span class="fc" id="L124">    		assertTrue(ord.isNil());</span>
+<span class="fc" id="L125">    }</span>
+    @Test
+    public void test_nullSection(){
+<span class="fc" id="L128">    		Section s = iseat.getSectionDetail(20000);</span>
+<span class="fc" id="L129">    		assertTrue(s.isNil());</span>
+<span class="fc" id="L130">    }</span>
+    @Test
+    public void test_nullTicket(){
+<span class="fc" id="L133">    		ticket t = itic.getTicketDetail(20000);</span>
+<span class="fc" id="L134">    		assertTrue(t.isNil());</span>
+<span class="fc" id="L135">    }</span>
+    
+    @Test
+    public void test_nullSubD(){
+<span class="fc" id="L139">    		subscribeDonations sub = isub.getSubDetail(20000);</span>
+<span class="fc" id="L140">    		assertTrue(sub.isNil());</span>
+<span class="fc" id="L141">    }</span>
+    
+    @Test
+    public void test_createShow() {
+<span class="fc" id="L145">    		shows s = is.createShow(&quot;name&quot;, &quot;web&quot;, &quot;date&quot;, &quot;time&quot;);</span>
+<span class="fc" id="L146">    		createdShowObjects++;</span>
+<span class="pc bpc" id="L147" title="4 of 8 branches missed.">    		assertTrue(s.getShowInfo().getName().equals(&quot;name&quot;) &amp;&amp; s.getShowInfo().getWeb().equals(&quot;web&quot;) &amp;&amp; s.getShowInfo().getDate().equals(&quot;date&quot;) &amp;&amp; s.getShowInfo().getTime().equals(&quot;time&quot;));</span>
+    		
+<span class="fc" id="L149">    }</span>
+
+    
+    @Test
+    public void test_getShowDetail() {
+<span class="fc" id="L154">    		shows s = is.getShowDetail(1);</span>
+<span class="fc" id="L155">    		assertTrue(s.getID().equals(&quot;1&quot;));</span>
+<span class="fc" id="L156">    }</span>
+    
+    @Test
+    public void test_getAllShows() {
+<span class="fc" id="L160">    		List&lt;shows&gt; all = new ArrayList&lt;shows&gt;();</span>
+<span class="fc" id="L161">    		all=is.getAllShows();</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">    		for(int i=0; i&lt;all.size(); i++) {</span>
+<span class="fc" id="L163">    			assertTrue(all.get(i).getID().equals(Integer.toString(i+1)));</span>
+    		}
+<span class="fc" id="L165">    }</span>
+    
+    @Test
+    public void test_getSpecificSection() {
+<span class="fc" id="L169">    		sec = is.getSpecificSection(2, 124);</span>
+
+<span class="pc bpc" id="L171" title="1 of 2 branches missed.">    		assertTrue(sec.getPrice()==350);</span>
+<span class="fc" id="L172">    }</span>
+    
+    
+    @Test
+    public void nullSectons(){
+<span class="fc" id="L177">    		Section s = iseat.getSectionDetail(20000);</span>
+<span class="fc" id="L178">    		assertTrue(s.isNil());</span>
+<span class="fc" id="L179">    }</span>
+    
+    @Test
+    public void test_createSections() {
+<span class="fc" id="L183">    		Section s = iseat.createSections(&quot;testSec&quot;, 123, 200);</span>
+<span class="pc bpc" id="L184" title="2 of 4 branches missed.">    		assertTrue(s.getPrice()==200 &amp;&amp; s.getSection_name().equals(&quot;testSec&quot;) &amp;&amp;</span>
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">    				s.getSid().equals(&quot;123&quot;));</span>
+<span class="fc" id="L186">    }</span>
+    
+    @Test
+    public void test_getAllSections() {
+<span class="fc" id="L190">    		List&lt;Section&gt; all = new ArrayList&lt;Section&gt;();</span>
+<span class="fc" id="L191">    		all=iseat.getAllSeats();</span>
+<span class="pc bpc" id="L192" title="2 of 4 branches missed.">    			assertTrue(all.get(0).getSid().equals(&quot;123&quot;) &amp;&amp; all.get(0).getPrice()==250);</span>
+<span class="pc bpc" id="L193" title="2 of 4 branches missed.">    			assertTrue(all.get(2).getSid().equals(&quot;124&quot;) &amp;&amp; all.get(2).getPrice()==350);</span>
+<span class="fc" id="L194">    }</span>
+    
+    @Test
+    public void test_createSeats() {
+<span class="fc" id="L198">    		Seat seat = iseat.createSeats(1, 1);</span>
+<span class="pc bpc" id="L199" title="3 of 6 branches missed.">    		assertTrue(seat.getStatus().equals(&quot;available&quot;) &amp;&amp; seat.getCid().equals(&quot;1&quot;) &amp;&amp; seat.getSeat().equals(&quot;1&quot;));</span>
+<span class="fc" id="L200">    }</span>
+    
+    @Test
+    public void test_createSeating() {
+<span class="fc" id="L204">    		Seating seating = iseat.createSeating(1);</span>
+<span class="fc" id="L205">    		Seat seat = iseat.createSeats(1, 1);</span>
+<span class="fc" id="L206">    		Seat seat1 = iseat.createSeats(2, 2);</span>
+<span class="fc" id="L207">    		List&lt;Seat&gt; seatList = new ArrayList&lt;Seat&gt;();</span>
+<span class="fc" id="L208">    		seatList.add(seat);</span>
+<span class="fc" id="L209">    		seatList.add(seat1);</span>
+<span class="fc" id="L210">    		seating.setSeats(seatList);</span>
+    		
+<span class="pc bpc" id="L212" title="2 of 4 branches missed.">    		assertTrue(seating.getRow().equals(&quot;1&quot;) &amp;&amp; seating.getSeats().get(0).status.equals(&quot;available&quot;)</span>
+<span class="pc bpc" id="L213" title="1 of 2 branches missed.">    				&amp;&amp; seating.getSeats().get(1).status.equals(&quot;available&quot;));</span>
+    		
+<span class="fc" id="L215">    }</span>
+    
+    @Test
+    public void test_getSectionDetail() {
+<span class="fc" id="L219">    		Section s = iseat.getSectionDetail(126);</span>
+<span class="fc" id="L220">    		assertTrue(s.getSection_name().equals(&quot;Main Right&quot;));</span>
+<span class="fc" id="L221">    }</span>
+    
+    
+    @Test
+    public void test_createOrder() {
+<span class="fc" id="L226">    		orders ord = iord.createOrder(1, 123, &quot;name&quot;, &quot;phone&quot;, &quot;email&quot;, &quot;b_a&quot;, &quot;cc_n&quot;, &quot;cc_exp_d&quot;);</span>
+<span class="fc" id="L227">    		patron pat = ord.getPat();</span>
+<span class="pc bpc" id="L228" title="1 of 2 branches missed.">    		assertTrue(pat.getName().equals(&quot;name&quot;) &amp;&amp; </span>
+<span class="pc bpc" id="L229" title="1 of 2 branches missed.">    				pat.getPhone().equals(&quot;phone&quot;) &amp;&amp;</span>
+<span class="pc bpc" id="L230" title="1 of 2 branches missed.">    				pat.getEmail().equals(&quot;email&quot;) &amp;&amp;</span>
+<span class="pc bpc" id="L231" title="1 of 2 branches missed.">    				pat.getBilling_address().equals(&quot;b_a&quot;) &amp;&amp;</span>
+<span class="pc bpc" id="L232" title="1 of 2 branches missed.">    				pat.getCc_number().equals(&quot;cc_n&quot;) &amp;&amp;</span>
+<span class="pc bpc" id="L233" title="1 of 2 branches missed.">    				pat.getCc_exp_date().equals(&quot;cc_exp_d&quot;));</span>
+<span class="fc" id="L234">    }</span>
+    
+    @Test
+    public void test_getAllOrders() {
+<span class="fc" id="L238">    		List&lt;orders&gt; all = new ArrayList&lt;orders&gt;();</span>
+<span class="fc" id="L239">    		all=iord.getAllOrders();</span>
+<span class="pc bpc" id="L240" title="2 of 4 branches missed.">    			assertTrue(all.get(0).getSid().equals(&quot;123&quot;) &amp;&amp; all.get(0).getOid().equals(&quot;1&quot;));</span>
+<span class="pc bpc" id="L241" title="2 of 4 branches missed.">    			assertTrue(all.get(1).getSid().equals(&quot;124&quot;) &amp;&amp; all.get(1).getOid().equals(&quot;2&quot;));</span>
+<span class="fc" id="L242">    }</span>
+    
+    @Test
+    public void test_getOrderDetail() {
+<span class="fc" id="L246">    		orders ord = iord.getOrderDetail(1);</span>
+<span class="pc bpc" id="L247" title="2 of 4 branches missed.">    		assertTrue(ord.getOid().equals(&quot;1&quot;) &amp;&amp; ord.getSid().equals(&quot;123&quot;));</span>
+<span class="fc" id="L248">    }</span>
+    
+    @Test
+    public void test_createTicket() {
+<span class="fc" id="L252">    		ticket tic = itic.createTicket(250, 1, 123, &quot;Front Right&quot;);</span>
+<span class="pc bpc" id="L253" title="1 of 2 branches missed.">    		assertTrue(tic.getPrice()==250 &amp;&amp;</span>
+<span class="pc bpc" id="L254" title="1 of 2 branches missed.">    				tic.getSid().equals(&quot;123&quot;) &amp;&amp;</span>
+<span class="pc bpc" id="L255" title="1 of 2 branches missed.">    				tic.getWid().equals(&quot;1&quot;));</span>
+<span class="fc" id="L256">    }</span>
+    
+    @Test
+    public void test_getAllTickets() {
+<span class="fc" id="L260">    		List&lt;ticket&gt; all = new ArrayList&lt;ticket&gt;();</span>
+<span class="fc" id="L261">    		all=itic.getAllTickets();</span>
+<span class="pc bpc" id="L262" title="2 of 4 branches missed.">    			assertTrue(all.get(0).getSid().equals(&quot;123&quot;) &amp;&amp; all.get(0).getTid().equals(&quot;1&quot;));</span>
+<span class="pc bpc" id="L263" title="2 of 4 branches missed.">    			assertTrue(all.get(1).getSid().equals(&quot;125&quot;) &amp;&amp; all.get(1).getTid().equals(&quot;2&quot;));</span>
+<span class="fc" id="L264">    }</span>
+    
+    
+    @Test
+    public void test_autoShows() {
+<span class="fc" id="L269">    		requestResponse response = rs.autoShows(1, 123, 3, 200);</span>
+<span class="fc" id="L270">    		assertTrue(response.getSeating().get(0).getSeats().get(0).getCid().equals(&quot;201&quot;));</span>
+    		
+<span class="fc" id="L272">    		 response = rs.autoShows(1, 123, 3, 205);</span>
+<span class="fc" id="L273">     	 assertTrue(response.getSeating().get(0).getSeats().get(0).getCid().equals(&quot;213&quot;));</span>
+     	 
+<span class="fc" id="L275">     	 response = rs.autoShows(1, 123, 5, 200);</span>
+<span class="fc" id="L276">     	 assertTrue(response.getStatus().equals(&quot;Error 5 contiguous seats not avalable&quot;));</span>
+<span class="fc" id="L277">    }</span>
+    
+    
+    @Test
+    public void test_createSub() {
+<span class="fc" id="L282">    		subscribeDonations subD = isub.createSub(1, 3);</span>
+<span class="pc bpc" id="L283" title="2 of 4 branches missed.">    		assertTrue(subD.getWid().equals(&quot;1&quot;) &amp;&amp; subD.getCount()==3);</span>
+<span class="fc" id="L284">    }</span>
+    
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>testCases (Nov 23, 2017 9:16:09 PM)</div></body></html>

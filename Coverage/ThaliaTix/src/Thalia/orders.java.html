@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>orders.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">testCases (Nov 23, 2017 9:16:09 PM)</a> &gt; <a href="../../index.html" class="el_group">ThaliaTix</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Thalia</a> &gt; <span class="el_source">orders.java</span></div><h1>orders.java</h1><pre class="source lang-java linenums">package Thalia;
+
+import java.util.Date;
+import java.util.List;
+
+public class orders {
+	
+	private String oid;
+	
+	private String wid;
+	private String sid;
+	private showInfo showInfo;
+	Date dateOrdered;
+	private int orderAmount;
+	private int numberOfTickets;
+	private List&lt;Seating&gt; seats;
+	private patron pat;   
+	private List&lt;ticket&gt; tickets;
+
+<span class="fc" id="L20">	public orders() {</span>
+		
+<span class="fc" id="L22">	}</span>
+	
+<span class="fc" id="L24">	public orders(int wID, int sID, String name, String phone, String email, String b_a, String cc_n, String cc_exp_d) {</span>
+<span class="fc" id="L25">		pat = new patron(name, phone, email, b_a, cc_n, cc_exp_d);</span>
+<span class="fc" id="L26">		sid = Integer.toString(sID);</span>
+<span class="fc" id="L27">		wid = Integer.toString(wID);</span>
+		
+<span class="fc" id="L29">		dateOrdered = new Date();</span>
+<span class="fc" id="L30">		this.oid = Integer.toString(UniqueIdGenerator.getUniqueOrderID());</span>
+		
+<span class="fc" id="L32">	}</span>
+	
+	public List&lt;ticket&gt; getTickets() {
+<span class="nc" id="L35">		return tickets;</span>
+	}
+
+	public void setTickets(List&lt;ticket&gt; tickets) {
+<span class="nc" id="L39">		this.tickets = tickets;</span>
+<span class="nc" id="L40">	}</span>
+
+	public boolean isNil() {
+<span class="nc" id="L43">        return false;</span>
+    }
+	
+	public boolean matchesId(int OID) {
+<span class="fc" id="L47">		return(this.oid.equals(Integer.toString(OID)));</span>
+	}
+	
+	public Date getDateOrdered() {
+<span class="nc" id="L51">		return dateOrdered;</span>
+	}
+
+	public void setDateOrdered(Date dateOrdered) {
+<span class="nc" id="L55">		this.dateOrdered = dateOrdered;</span>
+<span class="nc" id="L56">	}</span>
+
+	public showInfo getShowInfo() {
+<span class="nc" id="L59">		return showInfo;</span>
+	}
+
+	public void setShowInfo(showInfo showInfo) {
+<span class="nc" id="L63">		this.showInfo = showInfo;</span>
+<span class="nc" id="L64">	}</span>
+
+	public String getWid() {
+<span class="nc" id="L67">		return wid;</span>
+	}
+
+	public void setWid(int WID) {
+<span class="nc" id="L71">		this.wid = Integer.toString(WID);</span>
+<span class="nc" id="L72">	}</span>
+
+	public String getSid() {
+<span class="fc" id="L75">		return sid;</span>
+	}
+
+	public showInfo getShowI() {
+<span class="nc" id="L79">		return showInfo;</span>
+	}
+
+	public void setShowI(showInfo showI) {
+<span class="nc" id="L83">		this.showInfo = showI;</span>
+<span class="nc" id="L84">	}</span>
+
+	public void setSid(int SID) {
+<span class="nc" id="L87">		this.sid = Integer.toString(SID);</span>
+<span class="nc" id="L88">	}</span>
+
+	public List&lt;Seating&gt; getSeats() {
+<span class="nc" id="L91">		return seats;</span>
+	}
+
+	public void setSeats(List&lt;Seating&gt; seats) {
+<span class="nc" id="L95">		this.seats = seats;</span>
+<span class="nc" id="L96">	}</span>
+
+	public patron getPat() {
+<span class="fc" id="L99">		return pat;</span>
+	}
+
+	public void setPat(patron pat) {
+<span class="nc" id="L103">		this.pat = pat;</span>
+<span class="nc" id="L104">	}</span>
+	
+	public String getOid() {
+<span class="fc" id="L107">		return oid;</span>
+	}
+
+	public void setOid(int OID) {
+<span class="nc" id="L111">		this.oid = Integer.toString(OID);</span>
+<span class="nc" id="L112">	}</span>
+
+	public int getOrderAmount() {
+<span class="nc" id="L115">		return orderAmount;</span>
+	}
+
+	public void setOrderAmount(int orderAmount) {
+<span class="nc" id="L119">		this.orderAmount = orderAmount;</span>
+<span class="nc" id="L120">	}</span>
+
+	public int getNumberOfTickets() {
+<span class="nc" id="L123">		return numberOfTickets;</span>
+	}
+
+	public void setNumberOfTickets(int numberOfTix) {
+<span class="nc" id="L127">		this.numberOfTickets = numberOfTix;</span>
+<span class="nc" id="L128">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>testCases (Nov 23, 2017 9:16:09 PM)</div></body></html>

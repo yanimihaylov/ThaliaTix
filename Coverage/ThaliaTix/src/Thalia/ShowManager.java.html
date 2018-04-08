@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ShowManager.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">testCases (Nov 23, 2017 9:16:09 PM)</a> &gt; <a href="../../index.html" class="el_group">ThaliaTix</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Thalia</a> &gt; <span class="el_source">ShowManager.java</span></div><h1>ShowManager.java</h1><pre class="source lang-java linenums">package Thalia;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+<span class="fc" id="L7">public class ShowManager implements InterfaceShows {</span>
+	
+<span class="fc" id="L9">    private static List&lt;shows&gt; Shows = new ArrayList&lt;shows&gt;();</span>
+<span class="fc" id="L10">    private static List&lt;shows&gt; allShows = new ArrayList&lt;shows&gt;();</span>
+
+    private int location;
+<span class="fc" id="L13">    private static List&lt;Section&gt; Sections = new ArrayList&lt;Section&gt;();</span>
+    
+    
+
+    public List&lt;shows&gt; getAllShows() {    		
+<span class="fc" id="L18">        return(Shows);</span>
+    }
+
+    public shows createShow(String name, String web, String date, String time) {
+<span class="fc" id="L22">        shows s= new shows(name, web, date, time);</span>
+<span class="fc" id="L23">        Shows.add(s);</span>
+<span class="fc" id="L24">        return(s);</span>
+    }
+
+    private shows findById(int lid) {
+<span class="fc" id="L28">    	location = 0;</span>
+<span class="fc" id="L29">        Iterator&lt;shows&gt; li = Shows.listIterator();</span>
+        
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        while(li.hasNext()) {</span>
+        		
+<span class="fc" id="L33">        		shows s = li.next();</span>
+        
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        		if(s.matchesId(lid))</span>
+<span class="fc" id="L36">            		return(s);</span>
+        		
+<span class="fc" id="L38">        		location++;</span>
+<span class="fc" id="L39">        }</span>
+<span class="fc" id="L40">        return(new NullShow());</span>
+    }
+    
+    public void updateShow(int id, shows s) {
+<span class="nc" id="L44">    		findById(id);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">    		for(int i=0; i&lt;Shows.size(); i++) {</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">    			if(Shows.get(i).getID().equals(Integer.toString(id))){</span>
+<span class="nc" id="L47">    				Shows.set(i, s);</span>
+    			}
+    		}	
+<span class="nc" id="L50">    }</span>
+
+	public shows getShowDetail(int lid) {
+<span class="fc" id="L53">		return(findById(lid));</span>
+	}
+	
+	public Section getSpecificSection(int lid, int sid) {
+<span class="fc" id="L57">		shows sh = getShowDetail(lid);</span>
+<span class="fc" id="L58">		Sections = sh.getSections();</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">		for(int i=0; i&lt;Sections.size(); i++) {</span>
+<span class="fc" id="L60">			Section s = Sections.get(i);</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">			if(s.getSid().equals(Integer.toString(sid))) {</span>
+<span class="fc" id="L62">				return s;</span>
+    			}
+		}
+<span class="nc" id="L65">			return(new NullSection());</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>testCases (Nov 23, 2017 9:16:09 PM)</div></body></html>

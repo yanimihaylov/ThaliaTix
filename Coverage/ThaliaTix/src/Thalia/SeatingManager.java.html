@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>SeatingManager.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">testCases (Nov 23, 2017 9:16:09 PM)</a> &gt; <a href="../../index.html" class="el_group">ThaliaTix</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Thalia</a> &gt; <span class="el_source">SeatingManager.java</span></div><h1>SeatingManager.java</h1><pre class="source lang-java linenums">package Thalia;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+<span class="fc" id="L7">public class SeatingManager implements InterfaceSeating {</span>
+	
+<span class="fc" id="L9">		private static List&lt;Section&gt; Sections = new ArrayList&lt;Section&gt;();</span>
+	
+	   public Section createSections(String sct_name, int sID, int price) {
+<span class="fc" id="L12">		   Section s= new Section(sct_name, sID, price);</span>
+<span class="fc" id="L13">		   Sections.add(s);</span>
+<span class="fc" id="L14">	       return(s);</span>
+	    }
+	   
+	   public List&lt;Section&gt; getAllSeats() {
+<span class="fc" id="L18">	        return(Sections);</span>
+	    }
+
+	public Seating createSeating(int r) {
+<span class="fc" id="L22">		Seating s = new Seating(r);</span>
+<span class="fc" id="L23">		return s;</span>
+	}
+
+	public Seat createSeats(int id, int seat) {
+<span class="fc" id="L27">		Seat s = new Seat(id, seat);</span>
+<span class="fc" id="L28">		return s;</span>
+	}
+	
+	public Section getSectionDetail(int lid) {
+<span class="fc" id="L32">        return(findById(lid));</span>
+	}
+	
+	private Section findById(int lid) {
+<span class="fc" id="L36">        Iterator&lt;Section&gt; li = Sections.listIterator();</span>
+        
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        while(li.hasNext()) {</span>
+        		
+<span class="fc" id="L40">        		Section sec = li.next();</span>
+        
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        		if(sec.matchesId(lid))</span>
+<span class="fc" id="L43">            		return(sec);</span>
+
+<span class="fc" id="L45">        }</span>
+<span class="fc" id="L46">        return(new NullSection());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>testCases (Nov 23, 2017 9:16:09 PM)</div></body></html>

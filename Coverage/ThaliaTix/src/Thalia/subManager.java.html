@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>subManager.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">testCases (Nov 23, 2017 9:16:09 PM)</a> &gt; <a href="../../index.html" class="el_group">ThaliaTix</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Thalia</a> &gt; <span class="el_source">subManager.java</span></div><h1>subManager.java</h1><pre class="source lang-java linenums">package Thalia;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+<span class="fc" id="L7">public class subManager implements interfaceSub{</span>
+	private int location;
+	
+<span class="fc" id="L10">	private InterfaceTicket itic = new ticketManager();</span>
+<span class="fc" id="L11">	private static List&lt;ticket&gt; tics = new ArrayList&lt;ticket&gt;();</span>
+<span class="fc" id="L12">	private static List&lt;subscribeDonations&gt; subs = new ArrayList&lt;subscribeDonations&gt;();</span>
+	
+	public subscribeDonations createSub(int wid, int c) {
+<span class="fc" id="L15">		subscribeDonations s = new subscribeDonations(wid, c);</span>
+<span class="fc" id="L16">		subs.add(s);</span>
+<span class="fc" id="L17">		return s;</span>
+	}
+	
+	public subscribeDonations getSubDetail(int did) {
+<span class="fc" id="L21">		return(findById(did));</span>
+	}
+	
+	public subscribeDonations getSpecificSub(int wid, int did) {
+<span class="nc" id="L25">		subscribeDonations sh = getSubDetail(did);</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">				if(sh.getDid().equals(Integer.toString(did))) {</span>
+<span class="nc" id="L27">					return sh;</span>
+    				}
+<span class="nc" id="L29">			return(new nullSub());</span>
+	}
+ 
+    private subscribeDonations findById(int did) {
+<span class="fc" id="L33">    	location = 0;</span>
+<span class="fc" id="L34">        Iterator&lt;subscribeDonations&gt; li = subs.listIterator();</span>
+        
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">        while(li.hasNext()) {</span>
+        		
+<span class="nc" id="L38">        	subscribeDonations s = li.next();</span>
+        
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        		if(s.matchesId(did))</span>
+<span class="nc" id="L41">            		return(s);</span>
+        		
+<span class="nc" id="L43">        		location++;</span>
+<span class="nc" id="L44">        }</span>
+<span class="fc" id="L45">        return(new nullSub());</span>
+    }
+    
+    public subscribeDonations checkStatus (subscribeDonations sd) {
+<span class="nc" id="L49">    		tics = itic.getAllTickets();</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">    		if(sd.getTickets().size()==sd.getCount()) {</span>
+<span class="nc" id="L51">    			return sd;</span>
+    		}
+    		
+<span class="nc bnc" id="L54" title="All 2 branches missed.">    		for(int i=0; i&lt;tics.size(); i++) {</span>
+<span class="nc bnc" id="L55" title="All 4 branches missed.">    			if(tics.get(i).getStatus().equals(&quot;donating&quot;) &amp;&amp; (sd.getTickets().size()&lt;sd.getCount())) {</span>
+<span class="nc" id="L56">    				sd.getTickets().add(tics.get(i).getTid());</span>
+<span class="nc" id="L57">    				tics.get(i).setStatus(&quot;donated&quot;);</span>
+    			}
+    		}
+<span class="nc" id="L60">    		return sd;</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>testCases (Nov 23, 2017 9:16:09 PM)</div></body></html>

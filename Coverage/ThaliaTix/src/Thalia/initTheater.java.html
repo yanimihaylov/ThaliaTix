@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>initTheater.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">testCases (Nov 23, 2017 9:16:09 PM)</a> &gt; <a href="../../index.html" class="el_group">ThaliaTix</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Thalia</a> &gt; <span class="el_source">initTheater.java</span></div><h1>initTheater.java</h1><pre class="source lang-java linenums">package Thalia;
+
+<span class="fc" id="L3">public class initTheater {</span>
+	
+<span class="fc" id="L5">	private InterfaceShows is = new ShowManager();</span>
+<span class="fc" id="L6">	private InterfaceSeating iseat = new SeatingManager();</span>
+	Section initSection;
+	Seating initSeating;
+	Seat initSeat;
+	int cid;
+	public void create() {
+		
+<span class="fc" id="L13">		initSection = initFrontRight();</span>
+<span class="fc" id="L14">		initSection = initFrontCenter();</span>
+<span class="fc" id="L15">		initSection = initFrontLeft();</span>
+<span class="fc" id="L16">		initSection = initMainRight();</span>
+<span class="fc" id="L17">		initSection = initMainCenter();</span>
+<span class="fc" id="L18">		initSection = initMainLeft();</span>
+
+<span class="fc" id="L20">	}</span>
+	
+	public Section initFrontRight() {
+		//Front Right
+<span class="fc" id="L24">				initSection = iseat.createSections(&quot;Front Right&quot;, 123, 0);</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">				for(int row = 1; row&lt;=4; row++) {</span>
+<span class="fc" id="L26">					initSeating = iseat.createSeating(row);</span>
+					
+<span class="fc" id="L28">					cid=0;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">					if(row==1)</span>
+<span class="fc" id="L30">						cid+=200;</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">					if(row==2)</span>
+<span class="fc" id="L32">						cid+=212;</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">					if(row==3)</span>
+<span class="fc" id="L34">						cid+=224;</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">					if(row==4)</span>
+<span class="fc" id="L36">						cid+=237;</span>
+					
+<span class="fc bfc" id="L38" title="All 2 branches covered.">					for(int seat = 1; seat&lt;=4; seat++) {</span>
+
+<span class="fc" id="L40">						initSeat = iseat.createSeats(cid+seat, seat);</span>
+<span class="fc" id="L41">						initSeating.seats.add(initSeat);</span>
+					}
+<span class="fc" id="L43">					initSection.seating.add(initSeating);</span>
+				}
+<span class="fc" id="L45">		return initSection;</span>
+
+	}
+	
+	public Section initFrontCenter() {
+		//Front Center
+<span class="fc" id="L51">				initSection = iseat.createSections(&quot;Front Center&quot;, 124, 0);</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">				for(int row = 1; row&lt;=2; row++) {</span>
+<span class="fc" id="L53">					initSeating = iseat.createSeating(row);</span>
+					
+<span class="fc" id="L55">					cid=0;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">					if(row==1)</span>
+<span class="fc" id="L57">						cid+=204;</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">					if(row==2)</span>
+<span class="fc" id="L59">						cid+=216;</span>
+
+					
+<span class="fc bfc" id="L62" title="All 2 branches covered.">					for(int seat = 5; seat&lt;=8; seat++) {</span>
+<span class="fc" id="L63">						initSeat = iseat.createSeats(cid+seat-4, seat);</span>
+<span class="fc" id="L64">						initSeating.seats.add(initSeat);</span>
+					}
+<span class="fc" id="L66">					initSection.seating.add(initSeating);</span>
+				}
+				
+<span class="fc" id="L69">				initSeating = iseat.createSeating(3);</span>
+<span class="fc" id="L70">					cid=0;</span>
+<span class="fc" id="L71">					cid+=228;</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">				for(int seat = 5; seat&lt;=9; seat++) {</span>
+<span class="fc" id="L73">					initSeat = iseat.createSeats(cid+seat-4, seat);</span>
+<span class="fc" id="L74">					initSeating.seats.add(initSeat);</span>
+				}
+<span class="fc" id="L76">				initSection.seating.add(initSeating);</span>
+				
+<span class="fc" id="L78">				initSeating = iseat.createSeating(4);</span>
+<span class="fc" id="L79">					cid=0;</span>
+<span class="fc" id="L80">					cid+=241;</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">				for(int seat = 5; seat&lt;=10; seat++) {</span>
+<span class="fc" id="L82">					initSeat = iseat.createSeats(cid+seat-4, seat);</span>
+<span class="fc" id="L83">					initSeating.seats.add(initSeat);</span>
+				}
+<span class="fc" id="L85">				initSection.seating.add(initSeating);</span>
+				
+<span class="fc" id="L87">				return initSection;</span>
+
+	}
+	
+	public Section initFrontLeft() {
+		//Front Left
+<span class="fc" id="L93">				initSection = iseat.createSections(&quot;Front Left&quot;, 125, 0);</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">				for(int row = 1; row&lt;=4; row++) {</span>
+<span class="fc" id="L95">					initSeating = iseat.createSeating(row);</span>
+					
+<span class="fc" id="L97">					cid=0;</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">					if(row==1)</span>
+<span class="fc" id="L99">						cid+=208;</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">					if(row==2)</span>
+<span class="fc" id="L101">						cid+=220;</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">					if(row==3)</span>
+<span class="fc" id="L103">						cid+=233;</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">					if(row==4)</span>
+<span class="fc" id="L105">						cid+=247;</span>
+					
+<span class="fc bfc" id="L107" title="All 2 branches covered.">					for(int seat = 1; seat&lt;=4; seat++) {</span>
+<span class="fc" id="L108">						initSeat = iseat.createSeats(cid+seat, seat);</span>
+<span class="fc" id="L109">						initSeating.seats.add(initSeat);</span>
+					}
+<span class="fc" id="L111">					initSection.seating.add(initSeating);</span>
+				}
+<span class="fc" id="L113">				return initSection;</span>
+
+	}
+	
+	public Section initMainRight() {
+		//Main Right
+<span class="fc" id="L119">		initSection = iseat.createSections(&quot;Main Right&quot;, 126, 0);</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">		for(int row = 5; row&lt;=7; row++) {</span>
+<span class="fc" id="L121">			initSeating = iseat.createSeating(row);</span>
+			
+<span class="fc" id="L123">			cid=0;</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">			if(row==5)</span>
+<span class="fc" id="L125">				cid+=251;</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">			if(row==6)</span>
+<span class="fc" id="L127">				cid+=267;</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">			if(row==7)</span>
+<span class="fc" id="L129">				cid+=284;</span>
+					
+<span class="fc bfc" id="L131" title="All 2 branches covered.">			for(int seat = 1; seat&lt;=5; seat++) {</span>
+<span class="fc" id="L132">				initSeat = iseat.createSeats(cid+seat, seat);</span>
+<span class="fc" id="L133">				initSeating.seats.add(initSeat);</span>
+			}
+<span class="fc" id="L135">			initSection.seating.add(initSeating);</span>
+		}
+<span class="fc" id="L137">		return initSection;</span>
+
+	}
+	
+	public Section initMainCenter() {
+		//Main Center
+<span class="fc" id="L143">		initSection = iseat.createSections(&quot;Main Center&quot;, 127, 0);</span>
+		
+<span class="fc" id="L145">		initSeating = iseat.createSeating(5);</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">		for(int seat = 6; seat&lt;=11; seat++) {</span>
+<span class="fc" id="L147">			cid=0;</span>
+<span class="fc" id="L148">			cid+=256;</span>
+<span class="fc" id="L149">			initSeat = iseat.createSeats(cid+seat-5, seat);</span>
+<span class="fc" id="L150">			initSeating.seats.add(initSeat);</span>
+		}
+<span class="fc" id="L152">		initSection.seating.add(initSeating);</span>
+		
+<span class="fc" id="L154">		initSeating = iseat.createSeating(6);</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">		for(int seat = 6; seat&lt;=12; seat++) {</span>
+<span class="fc" id="L156">			cid=0;</span>
+<span class="fc" id="L157">			cid+=272;</span>
+<span class="fc" id="L158">			initSeat = iseat.createSeats(cid+seat-5, seat);</span>
+<span class="fc" id="L159">			initSeating.seats.add(initSeat);</span>
+		}
+<span class="fc" id="L161">		initSection.seating.add(initSeating);</span>
+		
+<span class="fc" id="L163">		initSeating = iseat.createSeating(7);</span>
+<span class="fc bfc" id="L164" title="All 2 branches covered.">		for(int seat = 6; seat&lt;=13; seat++) {</span>
+<span class="fc" id="L165">			cid=0;</span>
+<span class="fc" id="L166">			cid+=289;</span>
+<span class="fc" id="L167">			initSeat = iseat.createSeats(cid+seat-5, seat);</span>
+<span class="fc" id="L168">			initSeating.seats.add(initSeat);</span>
+		}
+<span class="fc" id="L170">		initSection.seating.add(initSeating);</span>
+		
+<span class="fc" id="L172">		return initSection;</span>
+
+	}
+	
+	public Section initMainLeft() {
+		//Main Left
+<span class="fc" id="L178">		initSection = iseat.createSections(&quot;Main Left&quot;, 128, 0);</span>
+		
+<span class="fc" id="L180">		initSeating = iseat.createSeating(5);</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">		for(int seat = 12; seat&lt;=16; seat++) {</span>
+<span class="fc" id="L182">			cid=0;</span>
+<span class="fc" id="L183">			cid+=262;</span>
+<span class="fc" id="L184">			initSeat = iseat.createSeats(cid+seat-11, seat);</span>
+<span class="fc" id="L185">			initSeating.seats.add(initSeat);</span>
+		}
+<span class="fc" id="L187">		initSection.seating.add(initSeating);</span>
+		
+<span class="fc" id="L189">		initSeating = iseat.createSeating(6);</span>
+<span class="fc bfc" id="L190" title="All 2 branches covered.">		for(int seat = 13; seat&lt;=17; seat++) {</span>
+<span class="fc" id="L191">			cid=0;</span>
+<span class="fc" id="L192">			cid+=279;</span>
+<span class="fc" id="L193">			initSeat = iseat.createSeats(cid+seat-12, seat);</span>
+<span class="fc" id="L194">			initSeating.seats.add(initSeat);</span>
+		}
+<span class="fc" id="L196">		initSection.seating.add(initSeating);</span>
+		
+<span class="fc" id="L198">		initSeating = iseat.createSeating(7);</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">		for(int seat = 14; seat&lt;=18; seat++) {</span>
+<span class="fc" id="L200">			cid=0;</span>
+<span class="fc" id="L201">			cid+=297;</span>
+<span class="fc" id="L202">			initSeat = iseat.createSeats(cid+seat-13, seat);</span>
+<span class="fc" id="L203">			initSeating.seats.add(initSeat);</span>
+		}
+<span class="fc" id="L205">		initSection.seating.add(initSeating);</span>
+				
+<span class="fc" id="L207">		return initSection;</span>
+
+	}
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>testCases (Nov 23, 2017 9:16:09 PM)</div></body></html>

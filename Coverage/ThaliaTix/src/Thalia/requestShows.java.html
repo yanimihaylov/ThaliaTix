@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>requestShows.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">testCases (Nov 23, 2017 9:16:09 PM)</a> &gt; <a href="../../index.html" class="el_group">ThaliaTix</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Thalia</a> &gt; <span class="el_source">requestShows.java</span></div><h1>requestShows.java</h1><pre class="source lang-java linenums">package Thalia;
+
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="fc" id="L6">public class requestShows {</span>
+
+<span class="fc" id="L8">	private InterfaceShows is = new ShowManager();</span>
+<span class="fc" id="L9">    private static List&lt;Section&gt; Sections = new ArrayList&lt;Section&gt;();</span>
+    
+<span class="fc" id="L11">    private Section section = new Section();</span>
+    
+<span class="fc" id="L13">    private requestResponse response = new requestResponse();</span>
+    
+
+	
+	public requestResponse autoShows(int wid, int sid, int count, int starting) {
+		
+<span class="fc" id="L19">		List&lt;Seating&gt; Seating = new ArrayList&lt;Seating&gt;();</span>
+<span class="fc" id="L20">		List&lt;Seat&gt; Seat = new ArrayList&lt;Seat&gt;();</span>
+		
+<span class="fc" id="L22">		List&lt;Seat&gt; AvailableSeats = new ArrayList&lt;Seat&gt;();</span>
+<span class="fc" id="L23">		List&lt;Seating&gt; AvailableSeating = new ArrayList&lt;Seating&gt;();</span>
+		
+<span class="fc" id="L25">		response.setStarting_seat_id(starting);</span>
+		
+<span class="fc" id="L27">		shows s = is.getShowDetail(wid);</span>
+<span class="fc" id="L28">		Sections = s.getSections();</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">		for(int i = 0; i&lt;Sections.size(); i++) {</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">			if(Sections.get(i).getSid().equals(Integer.toString(sid))) {</span>
+<span class="fc" id="L31">				section = Sections.get(i);</span>
+			}
+		}
+		
+<span class="fc" id="L35">		int price = section.getPrice();</span>
+<span class="fc" id="L36">		response.setTotal_amount(price*count);</span>
+		
+<span class="fc" id="L38">		response.setInfo(s);</span>
+<span class="fc" id="L39">		response.setSid(sid);</span>
+
+<span class="fc" id="L41">		Seating = section.getSeating();</span>
+		
+<span class="fc" id="L43">		int found = 0;</span>
+		
+<span class="fc bfc" id="L45" title="All 2 branches covered.">		for(int i = 0; i&lt;Seating.size(); i++) {</span>
+<span class="fc" id="L46">			Seat = Seating.get(i).getSeats();</span>
+<span class="fc" id="L47">			found=0;</span>
+<span class="fc" id="L48">			AvailableSeats = new ArrayList&lt;Seat&gt;();</span>
+			
+<span class="fc bfc" id="L50" title="All 2 branches covered.">			for(int j = 1; j&lt;Seat.size(); j++) {</span>
+<span class="pc bpc" id="L51" title="2 of 6 branches missed.">				if(((Seat.get(j-1).getStatus().equals(&quot;available&quot;)) &amp;&amp; ((Integer.parseInt(Seat.get(j).getCid())-Integer.parseInt(Seat.get(j-1).getCid()) == 1)) &amp;&amp; Integer.parseInt(Seat.get(j-1).getCid())&gt;=starting)){</span>
+<span class="pc bpc" id="L52" title="1 of 4 branches missed.">					if(j==1 &amp;&amp; count==1) {</span>
+<span class="nc" id="L53">						AvailableSeats.add(Seat.get(j-1));</span>
+<span class="nc" id="L54">						found++;</span>
+
+					}
+<span class="pc bpc" id="L57" title="1 of 4 branches missed.">					if(j==1 &amp;&amp; count &gt; 2) {</span>
+<span class="fc" id="L58">						AvailableSeats.add(Seat.get(j-1));</span>
+<span class="fc" id="L59">						found++;</span>
+<span class="fc" id="L60">						AvailableSeats.add(Seat.get(j));</span>
+<span class="fc" id="L61">						found++;</span>
+					}
+<span class="pc bpc" id="L63" title="2 of 4 branches missed.">					else if(j&gt;1 &amp;&amp; count!=1) {</span>
+<span class="fc" id="L64">						AvailableSeats.add(Seat.get(j));</span>
+<span class="fc" id="L65">						found++;</span>
+					}
+					
+					
+					
+<span class="fc bfc" id="L70" title="All 2 branches covered.">					if(found == count) {</span>
+<span class="fc" id="L71">						Seating SeatObj = new Seating(i+1);</span>
+<span class="fc" id="L72">						SeatObj.setSeats(AvailableSeats);</span>
+<span class="fc" id="L73">						AvailableSeating.add(SeatObj);</span>
+<span class="fc" id="L74">						response.setSeating(AvailableSeating);</span>
+<span class="fc" id="L75">						response.setStatus(&quot;ok&quot;);</span>
+<span class="fc" id="L76">						return response;	</span>
+
+					}
+				}
+			}
+		}
+<span class="fc" id="L82">		response.setStatus(&quot;Error &quot; + count + &quot; contiguous seats not avalable&quot;);</span>
+<span class="fc" id="L83">		return response;		</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>testCases (Nov 23, 2017 9:16:09 PM)</div></body></html>

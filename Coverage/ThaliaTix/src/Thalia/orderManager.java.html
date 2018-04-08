@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>orderManager.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">testCases (Nov 23, 2017 9:16:09 PM)</a> &gt; <a href="../../index.html" class="el_group">ThaliaTix</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">Thalia</a> &gt; <span class="el_source">orderManager.java</span></div><h1>orderManager.java</h1><pre class="source lang-java linenums">package Thalia;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+<span class="fc" id="L7">public class orderManager implements interfaceOrders{</span>
+	
+<span class="fc" id="L9">	private static List&lt;orders&gt; orders = new ArrayList&lt;orders&gt;();</span>
+	int location;
+
+		public orders createOrder(int wid, int sid, String name, String phone, String email, String b_a, String cc_n, String cc_exp_d ) {
+<span class="fc" id="L13">			orders ord = new orders(wid, sid, name, phone, email, b_a, cc_n, cc_exp_d);</span>
+<span class="fc" id="L14">			orders.add(ord);</span>
+<span class="fc" id="L15">			return ord;</span>
+		}
+		
+		public List&lt;orders&gt; getAllOrders(){
+<span class="fc" id="L19">			return orders;</span>
+		}
+		
+		public orders getOrderDetail(int oid) {
+<span class="fc" id="L23">			return(findById(oid));</span>
+		}
+		
+		
+	    private orders findById(int oid) {
+<span class="fc" id="L28">	    	location = 0;</span>
+<span class="fc" id="L29">	        Iterator&lt;orders&gt; li = orders.listIterator();</span>
+	        
+<span class="fc bfc" id="L31" title="All 2 branches covered.">	        while(li.hasNext()) {</span>
+	        		
+<span class="fc" id="L33">	        		orders ord = li.next();</span>
+	        
+<span class="fc bfc" id="L35" title="All 2 branches covered.">	        		if(ord.matchesId(oid))</span>
+<span class="fc" id="L36">	            		return(ord);</span>
+	        		
+<span class="fc" id="L38">	        		location++;</span>
+<span class="fc" id="L39">	        }</span>
+<span class="fc" id="L40">	        return(new NullOrder());</span>
+	    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span>testCases (Nov 23, 2017 9:16:09 PM)</div></body></html>
