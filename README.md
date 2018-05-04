@@ -72,7 +72,7 @@ move .war to tomcat/webapps
 start server:
 
 ```
-cd apache-tomcat-8.5.23.zip/bin
+cd /opt/tomcat/bin
 
 chmod 744 *sh
 
